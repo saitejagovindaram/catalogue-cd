@@ -10,3 +10,8 @@ variable common_tags {
   type        = map
 }
 
+variable version {
+  type        = string
+}
+
+

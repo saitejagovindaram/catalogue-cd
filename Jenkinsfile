@@ -15,6 +15,7 @@ pipeline{
     }
     environment{
         ENV = "${params.environment}"
+        VERSION = "${params.version}"
     }
     stages{
         stage('Print Version and Environment'){
@@ -39,7 +40,7 @@ pipeline{
             steps{
                 sh '''
                     cd terraform/
-                    terraform plan -var-file="$ENV/$ENV.tfvars"
+                    terraform plan -var-file="$ENV/$ENV.tfvars" -var "version=$VERSION"
                 '''
             }
         }
