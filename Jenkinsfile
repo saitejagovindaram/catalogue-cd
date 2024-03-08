@@ -29,19 +29,31 @@ pipeline{
         }
         stage('Init'){
             steps{
-                sh '''
-                    echo $ENV
+                // sh '''
+                //     echo $ENV
+                //     cd terraform/
+                //     terraform init -reconfigure  -backend-config=$ENV/backend.tf
+                // '''
+                sh """
                     cd terraform/
-                    terraform init -reconfigure  -backend-config=$ENV/backend.tf
-                '''
+                    terraform init -reconfigure  -backend-config=${params.environment}/backend.tf
+                """
             }
         }
         stage('Plan'){
             steps{
-                sh '''
+                sh """
                     cd terraform/
-                    terraform plan -var-file="$ENV/$ENV.tfvars" -var "project_version=$VERSION"
-                '''
+                    terraform plan -var-file="${params.environment}/${params.environment}.tfvars" -var "project_version=${params.version}"
+                """
+            }
+        }
+        stage('Apply'){
+            steps{
+                sh """
+                    cd terraform/
+                    terraform apply -var-file="${params.environment}/${params.environment}.tfvars" -var "project_version=${params.version}" -auto-approve
+                """
             }
         }
     }
