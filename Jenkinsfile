@@ -39,7 +39,7 @@ pipeline{
             steps{
                 sh '''
                     cd terraform/
-                    terraform plan
+                    terraform plan -var-file="$ENV/$ENV.tfvars"
                 '''
             }
         }
