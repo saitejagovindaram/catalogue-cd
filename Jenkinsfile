@@ -40,7 +40,7 @@ pipeline{
             steps{
                 sh '''
                     cd terraform/
-                    terraform plan -var-file="$ENV/$ENV.tfvars" -var "version=$VERSION"
+                    terraform plan -var-file="$ENV/$ENV.tfvars" -var "project_version=$VERSION"
                 '''
             }
         }

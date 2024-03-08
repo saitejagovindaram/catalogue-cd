@@ -10,7 +10,7 @@ variable common_tags {
   type        = map
 }
 
-variable version {
+variable project_version {
   type        = string
 }
 
