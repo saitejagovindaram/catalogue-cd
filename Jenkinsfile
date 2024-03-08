@@ -13,6 +13,9 @@ pipeline{
         string(name: 'version', defaultValue: '', description: 'what is the version?')
         string(name: 'environment', defaultValue: '', description: 'what is the environment?')
     }
+    environment{
+        ENV = "${params.environment}"
+    }
     stages{
         stage('Print Version and Environment'){
             steps{
@@ -26,8 +29,9 @@ pipeline{
         stage('Init'){
             steps{
                 sh '''
+                    echo $ENV
                     cd terraform/
-                    terraform init -reconfigure
+                    terraform init -reconfigure  -backend-config=$ENV/backend.tf
                 '''
             }
         }
