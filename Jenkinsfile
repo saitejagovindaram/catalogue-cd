@@ -23,6 +23,13 @@ pipeline{
                 echo "Environment is: ${params.environment}"
             }
         }
+        stage('Init'){
+            steps{
+                sh '''
+                    terraform init -reconfigure
+                '''
+            }
+        }
     }
 
     post {
