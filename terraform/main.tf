@@ -5,7 +5,7 @@ module "catalogue" {
   component = "catalogue"
   environment = "dev"
   project_name = "roboshop"
-  component_sg_id = data.aws_ssm_parameter.cart_sg_id.value
+  component_sg_id = data.aws_ssm_parameter.catalogue_sg_id.value
   private_subnet_ids = split(",", data.aws_ssm_parameter.private_subnet_ids.value)
   vpc_id = data.aws_ssm_parameter.vpc_id.value
   app_alb_listener_arn = data.aws_ssm_parameter.app_alb_listener_arn.value
