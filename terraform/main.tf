@@ -1,4 +1,4 @@
-module "user" {
+module "catalogue" {
   source = "git::https://github.com/saitejagovindaram/roboshop-app-tf-module.git?ref=master"
 
   ami_id = data.aws_ami.centos8.id
